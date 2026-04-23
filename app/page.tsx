@@ -1,18 +1,39 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import API from "../app/services/api";
+import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
+type Product = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  sku: string;
+  availability: boolean;
+};
+
+type ProductForm = {
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+  sku: string;
+  availability: boolean;
+};
+
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // 🔥 CREATE MODAL STATE
+  // CREATE MODAL STATE
   const [showModal, setShowModal] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ProductForm>({
     name: "",
     description: "",
     price: "",
@@ -22,7 +43,7 @@ export default function Home() {
   });
 
   // FETCH PRODUCTS
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
       const res = await API.get(`/products?q=${q}`);
@@ -33,15 +54,16 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [q]);
 
   useEffect(() => {
     fetchProducts();
-  }, [q]);
+  }, [fetchProducts]);
 
   // HANDLE INPUT
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   // CREATE PRODUCT
@@ -76,7 +98,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
 
       {/* HEADER */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-10 px-6 text-center shadow">
+      <div className="bg-linear-to-r from-blue-600 to-indigo-600 text-white py-10 px-6 text-center shadow">
         <h1 className="text-3xl font-bold">Product Listing</h1>
         <p className="text-sm mt-2 opacity-80">
           Browse, search, and manage products
@@ -120,8 +142,11 @@ export default function Home() {
             <Link href={`/product/${p.id}`} key={p.id}>
               <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition cursor-pointer overflow-hidden">
                 
-                <img
+                <Image
                   src={p.image}
+                  alt={p.name}
+                  width={640}
+                  height={320}
                   className="h-44 w-full object-cover"
                 />
 

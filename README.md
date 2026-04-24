@@ -1,36 +1,179 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Product Listing App (Full Stack)
 
-## Getting Started
+A full-stack product management application built using Next.js, Node.js, Express, Prisma, and PostgreSQL (Neon).
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌐 Live Links
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🔗 Frontend: https://your-frontend-url.vercel.app  
+- 🔗 Backend API: https://product-list-backend-en8c.onrender.com  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Features
 
-## Learn More
+### ✅ Product Management (CRUD)
+- Create product (via UI modal)
+- View all products
+- Update product (inline edit ✏️ with modal)
+- Delete product
 
-To learn more about Next.js, take a look at the following resources:
+### 🔍 Search
+- Search products by name
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🎨 UI/UX
+- Modern responsive design (Tailwind CSS)
+- Toast notifications
+- Blur modal UI
+- Product cards with hover effects
+- Clean product detail page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧱 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Axios
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend
+- Node.js
+- Express.js
+- Prisma ORM
+
+### Database
+- PostgreSQL (Neon Cloud)
+
+### Deployment
+- Frontend → Vercel
+- Backend → Render
+
+---
+
+## 📂 Project Structure
+
+product-listing-app/
+│
+├── frontend/        # Next.js application
+│   ├── app/
+│   ├── services/
+│
+├── backend/         # Express + Prisma backend
+│   ├── src/
+│   ├── prisma/
+│
+└── README.md
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone Repository
+
+git clone https://github.com/your-username/product-listing-app.git
+cd product-listing-app
+
+---
+
+### 2️⃣ Backend Setup
+
+cd backend  
+npm install  
+
+Create `.env` file:
+
+DATABASE_URL=your_neon_database_url  
+PORT=5000  
+
+Run database migration:
+
+npx prisma db push  
+
+Start server:
+
+npm start  
+
+---
+
+### 3️⃣ Frontend Setup
+
+cd frontend  
+npm install  
+npm run dev  
+
+---
+
+## 🌐 API Endpoints
+
+GET     /api/products        → Get all products  
+GET     /api/products/:id   → Get single product  
+POST    /api/products       → Create product  
+PUT     /api/products/:id   → Update product  
+DELETE  /api/products/:id   → Delete product  
+
+---
+
+## 🗄️ Database Schema
+
+model Product {
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  price        Float
+  image        String
+  sku          String   @unique
+  availability Boolean  @default(true)
+}
+
+---
+
+## 🚀 Deployment Details
+
+Backend (Render)
+- Set DATABASE_URL (Neon)
+- Build: npm install
+- Start: node server.js
+
+Frontend (Vercel)
+- Root directory: frontend
+- Update API base URL
+
+---
+
+## ⚠️ Challenges Faced
+
+- Fixing 500 error due to missing database tables
+- Setting up Neon PostgreSQL connection
+- Handling environment variables in deployment
+- Fixing image loading issues in Next.js
+
+---
+
+## 📌 Future Improvements
+
+- Image upload (Multer / Cloudinary)
+- Authentication (JWT)
+- Pagination & filtering
+- Admin dashboard
+
+---
+
+## 👨‍💻 Author
+
+Muhammed Inshad  
+MERN Stack Developer  
+
+---
+
+## ⭐ Conclusion
+
+This project demonstrates:
+- Full-stack development
+- REST API design
+- Database integration
+- Cloud deployment
+
+👉 Ready for real-world applications 🚀

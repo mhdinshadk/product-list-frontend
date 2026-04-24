@@ -113,7 +113,7 @@ export default function Home() {
           {/* SEARCH */}
           <input
             placeholder="🔍 Search products..."
-            className="w-full border border-gray-300 focus:border-blue-500 p-3 rounded-lg shadow-sm"
+            className="w-full border border-gray-300 text-gray-900 focus:border-blue-500 p-3 rounded-lg shadow-sm"
             onChange={(e) => setQ(e.target.value)}
           />
 

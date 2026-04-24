@@ -6,7 +6,7 @@ A full-stack product management application built using Next.js, Node.js, Expres
 
 ## 🌐 Live Links
 
-- 🔗 Frontend: https://your-frontend-url.vercel.app  
+- 🔗 Frontend: https://product-list-frontend-5m4m.vercel.app/
 - 🔗 Backend API: https://product-list-backend-en8c.onrender.com  
 
 ---
@@ -16,7 +16,7 @@ A full-stack product management application built using Next.js, Node.js, Expres
 ### ✅ Product Management (CRUD)
 - Create product (via UI modal)
 - View all products
-- Update product (inline edit ✏️ with modal)
+- Update product 
 - Delete product
 
 ### 🔍 Search
@@ -73,7 +73,7 @@ product-listing-app/
 
 ### 1️⃣ Clone Repository
 
-git clone https://github.com/your-username/product-listing-app.git
+git clone https:https://github.com/mhdinshadk/product-list-frontend
 cd product-listing-app
 
 ---
@@ -152,14 +152,7 @@ Frontend (Vercel)
 
 ---
 
-## 📌 Future Improvements
 
-- Image upload (Multer / Cloudinary)
-- Authentication (JWT)
-- Pagination & filtering
-- Admin dashboard
-
----
 
 ## 👨‍💻 Author
 
